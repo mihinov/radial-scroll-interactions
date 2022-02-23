@@ -1,1 +1,0 @@
-{"mappings":"AACAA,QAAQC,IAAIC","sources":["src/index.ts"],"sourcesContent":["const a: number = 1;\nconsole.log(a + 2);\n\n\n\n\n\n\n\n\n"],"names":["console","log","$b4e14b6b8da86996$var$a"],"version":3,"file":"index.e7ef730f.js.map"}
