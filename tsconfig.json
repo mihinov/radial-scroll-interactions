@@ -1,4 +1,7 @@
 {
+	"include": [
+		"src/**/*"
+	],
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
     "strict": true,
