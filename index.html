@@ -16,34 +16,51 @@
 <body>
 
 <div class="main">
+
 	<div class="scroll-menu">
-		<div class="circle-1"></div>
-		<div class="circle-2"></div>
-		<div class="circle-2-overlay"></div>
-		<div class="scrollbar"></div>
-		<div class="overlay"></div>
+		<div class="scroll-menu__circle-1"></div>
+		<div class="scroll-menu__circle-2"></div>
+		<div class="scroll-menu__circle-2-overlay"></div>
+		<div class="scroll-menu__scrollbar"></div>
+		<div class="scroll-menu__overlay"></div>
 	</div>
+
 	<nav>
 		<ul class="nav">
-			<li data-id="1"><a>Design</a></li>
-			<li data-id="2"><a>3D</a></li>
-			<li data-id="3"><a>Gradient</a></li>
-			<li data-id="4"><a>Concept</a></li>
-			<li data-id="5"><a>Misc.</a></li>
+
+			<li class="nav__item" data-id="1">
+				<a>Design</a>
+			</li>
+			<li class="nav__item" data-id="2">
+				<a>3D</a>
+			</li>
+			<li class="nav__item" data-id="3">
+				<a>Gradient</a>
+			</li>
+			<li class="nav__item" data-id="4">
+				<a>Concept</a>
+			</li>
+			<li class="nav__item" data-id="5">
+				<a>Misc.</a>
+			</li>
+
 		</ul>
 	</nav>
+
 	<div class="side">
 		<h1>Work.</h1>
-		<div class="text">
-			<div class="line"></div>
+		<div class="side__text">
+			<div class="side__line"></div>
 			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, ipsam. </p>
 		</div>
-		<h4 class="author">
+		<h4 class="side__author">
 			bekaomais@gmail.com
 		</h4>
 	</div>
+
 	<section class="content"></section>
-</div>
+
+</div> <!-- .main -->
 
 <script type="module" src="./src/index.ts"></script>
 

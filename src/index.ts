@@ -1,10 +1,7 @@
-const a: number = 1;
-console.log(a + 2);
 
+window.addEventListener('load', () => {
 
+	const content = document.querySelector('.content');
+	let a;
 
-
-
-
-
-
+});

@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "parcel index.html --open",
-		"build": "parcel build index.html"
+    "build": "parcel build index.html"
   },
   "author": "",
   "license": "ISC",
@@ -13,7 +13,10 @@
     "smooth-scrollbar": "^8.7.4"
   },
   "devDependencies": {
+    "@parcel/transformer-typescript-tsc": "^2.3.2",
     "parcel": "^2.3.2",
+    "postcss": "^8.4.6",
+    "postcss-nested": "^5.0.6",
     "typescript": "^4.5.5"
   }
 }
