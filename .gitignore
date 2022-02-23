@@ -11,6 +11,11 @@
 npm-debug.log
 yarn-error.log
 
+# Parcel
+/.parcel-cache
+/.cache
+
+
 # IDEs and editors
 .idea/
 .project
