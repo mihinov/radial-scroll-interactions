@@ -1,7 +1,6 @@
 
 window.addEventListener('load', () => {
 
-	const content = document.querySelector('.content');
-	let a;
+	const content: Element | null = document.querySelector('.content');
 
 });
