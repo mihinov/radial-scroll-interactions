@@ -7,6 +7,11 @@ export interface IData {
 
 export const DATA: IData[] = [
 	{
+		id: 0,
+		title: 'Здарова Здарововыч',
+		imgUrl: 'https://picsum.photos/400/600'
+	},
+	{
 		id: 1,
 		navId: 1,
 		title: "Klim Musalimov",

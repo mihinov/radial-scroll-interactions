@@ -23,17 +23,17 @@ class MainApp {
 	};
 
 	constructor() {
-		if (this.contentNode !== null && this.sideNode !== null && this.scrollMenuNode !== null) {
-			this.verticalScrollbar = this.scrollBarInit(this.contentNode);
+		if (this.contentNode !== null && this.sideNode !== null && this.scrollMenuNode !== null && this.scrollbarNode !== null) {
+			this.verticalScrollbar = this.scrollBarInit(this.contentNode, this.scrollbarNode);
 			this.itemNodes = this.generateList(this.verticalScrollbar.contentEl);
 			this.animateItems(this.sideNode);
-			this.initMenu(this.scrollMenuNode)
+			this.initMenu(this.scrollMenuNode, this.navItemNodes, this.verticalScrollbar, this.itemNodes);
 		} else {
 			this.verticalScrollbar = null;
 		}
 	}
 
-	private scrollBarInit(contentNode: HTMLElement): Scrollbar {
+	private scrollBarInit(contentNode: HTMLElement, scrollbarNode: HTMLElement): Scrollbar {
 		Scrollbar.use(ModalPlugin);
 		const verticalScrollbar = Scrollbar.init(contentNode, {
 			damping: 0.1,
@@ -43,6 +43,21 @@ class MainApp {
 		verticalScrollbar.track.yAxis.element.remove();
 		verticalScrollbar.track.xAxis.element.remove();
 		verticalScrollbar.updatePluginOptions('modal', { open: true });
+		verticalScrollbar.addListener(({ offset }) => {
+			const { clientHeight, scrollHeight } = verticalScrollbar.containerEl;
+			const progress = Number.parseInt(
+				((offset.y / (scrollHeight - clientHeight)) * 360).toFixed(0),
+				10
+			);
+
+			const rotatePercentage = ((progress * (333 - 225)) / 360 + 225).toFixed(0);
+
+			gsap.to(scrollbarNode, {
+				transform: `rotate(${rotatePercentage}deg)`,
+			});
+
+		});
+
 		return verticalScrollbar;
 	}
 
@@ -51,7 +66,7 @@ class MainApp {
 
 		itemNodes.forEach(itemNode => scrollContentNode.appendChild(itemNode));
 		scrollContentNode.classList.add(
-			DATA.length % 2 === 0 ? 'scroll-content__event' : 'scroll-content__odd'
+			DATA.length % 2 === 0 ? 'scroll-content__even' : 'scroll-content__odd'
 		);
 
 		if (scrollContentNode.children.length === DATA.length) {
@@ -142,17 +157,37 @@ class MainApp {
 		const { X, Y } = this.constants.SIZES.MENU;
 
 		this.toggleActiveById(selectedItemNode, navItemNodes);
+
+		navItemNodes.forEach((navItemNode, i) => {
+			if (selectedItemNode.dataset['id'] !== undefined) {
+				const id = Number.parseInt(selectedItemNode.dataset['id'], 10);
+				const index = i + 1;
+
+				const currentItemYPos = Number(gsap.getProperty(navItemNode, "translateY"));
+				const selectedItemYPos = Number(gsap.getProperty(selectedItemNode, "translateY"));
+
+				const translateSteps = selectedItemYPos / Y;
+				const translateValue = translateSteps * Y;
+
+				gsap.to(navItemNode, {
+					transform: `translate(
+						${index < id ? -(X * (id - index)) : X * (id - index)}px,
+						${currentItemYPos - translateValue}px
+					)`,
+					duration: 0.8,
+					ease: Power1.easeOut,
+				});
+			}
+		});
 	}
 
 	private toggleActiveById(selectedItemNode: HTMLElement, navItemNodes: HTMLElement[]) {
 		for (const navItemNode of navItemNodes) {
-			if (navItemNode.dataset['id'] === selectedItemNode.dataset['id']) {
-				selectedItemNode.classList.add('active');
-			} else {
-				navItemNode.classList.remove('nav__item_active');
-			}
+			navItemNode.classList.remove('nav__item_active');
 		}
+		selectedItemNode.classList.add('nav__item_active');
 	}
+
 }
 
 new MainApp();
