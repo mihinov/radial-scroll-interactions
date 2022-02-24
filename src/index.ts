@@ -190,13 +190,13 @@ class MainApp {
 	}
 
 	private initObserverScroll(verticalScrollbar: Scrollbar, navItemNodes: HTMLElement[]) {
-		let options = {
+		const options = {
 			root: verticalScrollbar.containerEl,
 			rootMargin: "0px",
 			threshold: 0.5,
 		};
 
-		let observer = new IntersectionObserver((entries, _) => {
+		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					const selectionItemNode = navItemNodes.find(
