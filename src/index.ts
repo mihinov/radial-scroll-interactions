@@ -28,6 +28,7 @@ class MainApp {
 			this.itemNodes = this.generateList(this.verticalScrollbar.contentEl);
 			this.animateItems(this.sideNode);
 			this.initMenu(this.scrollMenuNode, this.navItemNodes, this.verticalScrollbar, this.itemNodes);
+			this.initObserverScroll(this.verticalScrollbar, this.navItemNodes);
 		} else {
 			this.verticalScrollbar = null;
 		}
@@ -186,6 +187,32 @@ class MainApp {
 			navItemNode.classList.remove('nav__item_active');
 		}
 		selectedItemNode.classList.add('nav__item_active');
+	}
+
+	private initObserverScroll(verticalScrollbar: Scrollbar, navItemNodes: HTMLElement[]) {
+		let options = {
+			root: verticalScrollbar.containerEl,
+			rootMargin: "0px",
+			threshold: 0.5,
+		};
+
+		let observer = new IntersectionObserver((entries, _) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const selectionItemNode = navItemNodes.find(
+						({ dataset }) => dataset['id'] === (entry.target as HTMLElement).dataset['id']
+					);
+
+					if (Boolean(selectionItemNode) && selectionItemNode !== undefined) {
+						this.onMenuSelect(selectionItemNode, navItemNodes);
+					}
+				}
+			});
+		}, options);
+
+		verticalScrollbar.containerEl.querySelectorAll(".item").forEach((p) => {
+			observer.observe(p);
+		});
 	}
 
 }
