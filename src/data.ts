@@ -1,11 +1,11 @@
-interface Data {
+export interface IData {
 	id: number;
 	navId?: number;
 	title: string;
 	imgUrl: string;
 }
 
-export const data: Data[] = [
+export const DATA: IData[] = [
 	{
 		id: 1,
 		navId: 1,

@@ -10,7 +10,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,300&display=swap"
 		rel="stylesheet">
-	<link rel="stylesheet" href="./src/index.css">
+	<link rel="stylesheet" href="./src/index.scss">
 </head>
 
 <body>
@@ -25,33 +25,33 @@
 		<div class="scroll-menu__overlay"></div>
 	</div>
 
-	<nav>
-		<ul class="nav">
+	<nav class="nav">
+		<ul class="nav__list">
 
 			<li class="nav__item" data-id="1">
-				<a>Design</a>
+				<a class="nav__link">Design</a>
 			</li>
 			<li class="nav__item" data-id="2">
-				<a>3D</a>
+				<a class="nav__link">3D</a>
 			</li>
 			<li class="nav__item" data-id="3">
-				<a>Gradient</a>
+				<a class="nav__link">Gradient</a>
 			</li>
 			<li class="nav__item" data-id="4">
-				<a>Concept</a>
+				<a class="nav__link">Concept</a>
 			</li>
 			<li class="nav__item" data-id="5">
-				<a>Misc.</a>
+				<a class="nav__link">Misc.</a>
 			</li>
 
 		</ul>
 	</nav>
 
 	<div class="side">
-		<h1>Work.</h1>
+		<h1 class="side__title">Work.</h1>
 		<div class="side__text">
 			<div class="side__line"></div>
-			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, ipsam. </p>
+			<p class="side__paragraph">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, ipsam. </p>
 		</div>
 		<h4 class="side__author">
 			bekaomais@gmail.com
